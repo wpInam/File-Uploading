@@ -12,9 +12,13 @@
     </form>
 
     {% if file_url %}
-        <p>File uploaded successfully: 
+        <p>✅ File uploaded successfully:
            <a href="{{ file_url }}" target="_blank">{{ file_url }}</a>
         </p>
+    {% endif %}
+
+    {% if error %}
+        <p style="color:red;">❌ {{ error }}</p>
     {% endif %}
 </body>
 </html>
