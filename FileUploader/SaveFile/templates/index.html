@@ -11,14 +11,25 @@
         <button type="submit">Upload</button>
     </form>
 
-    {% if file_url %}
-        <p>✅ File uploaded successfully:
-           <a href="{{ file_url }}" target="_blank">{{ file_url }}</a>
-        </p>
-    {% endif %}
+    <h3>Uploaded Files</h3>
+    <ul>
+        {% comment %} {{ files|pprint }} {% endcomment %}
 
-    {% if error %}
-        <p style="color:red;">❌ {{ error }}</p>
-    {% endif %}
+        <table border="1px" cellpadding=10 cellspacing=0>
+            <tr>
+                <td>Name</td>
+                <td>Date</td>
+            </tr>
+            {% for f in files %}
+                <tr>
+                    <td><a href="{{ f.file.url }}" target="_blank">{{ f.file.name }}</a></td>
+                    <td>(uploaded at {{ f.uploaded_at }})</td>
+                </tr>
+                
+            {% empty %}
+                <li>No files uploaded yet.</li>
+            {% endfor %}
+        </table>
+    </ul>
 </body>
 </html>
